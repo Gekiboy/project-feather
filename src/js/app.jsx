@@ -10,6 +10,8 @@ import reducers from './reducers';
 import App from './components/App.jsx';
 import { Home } from './components/pages';
 
+require('webvr-polyfill');
+
 const history = createHistory();
 
 let routes = (
