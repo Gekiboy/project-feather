@@ -46,7 +46,7 @@ class Car extends Component {
   constructor() {
     super();
     this.state = {
-      geometry: {}
+      geometry: new THREE.Geometry()
     };
   }
   componentWillMount() {
@@ -80,8 +80,9 @@ class Car extends Component {
         scale={scale}
         position={position}
         rotation={rotation}
+        {...this.props}
       />
-    ) : <Mesh/>;
+    ) : null;
   }
 }
 
