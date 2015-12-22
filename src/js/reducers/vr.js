@@ -47,11 +47,12 @@ function getInputStates(inputs) {
     });
   }
   
+  console.log(inputStates);
+  
   return inputStates;
 }
 
 export default (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case REQUEST_VR_STATE_UPDATE:
       return Object.assign({}, state, getInputStates(state.inputs));
