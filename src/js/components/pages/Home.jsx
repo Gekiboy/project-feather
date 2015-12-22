@@ -2,15 +2,16 @@ import React from 'react';
 const { Component } = React;
 import { connect } from 'react-redux';
 import THREE from 'three';
-import { AmbientLight, DirectionalLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
+import { AmbientLight, SpotLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
 import Car from '../Car.jsx';
 import Floor from '../Floor.jsx';
+import HudPanel from '../HudPanel.jsx';
 import * as VRActions from '../../actions/vr';
 
 window.THREE = THREE;
 
-require('../../VRControls');
 require('../../VREffect');
+require('../../StereoEffect');
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
@@ -43,9 +44,8 @@ class Home extends Component {
   
   componentDidMount() {
     let renderer = this.refs.scene._THREErenderer;
-    this.vrEffect = new THREE.VREffect(renderer, function (err) {
-      console.error(err);
-    });
+    this.vrEffect = new THREE.VREffect(renderer);
+    renderer.setSize(window.innerWidth, window.innerHeight);
   }
   
   onFullscreenClick() {
@@ -55,14 +55,15 @@ class Home extends Component {
   render() {
     
     let position = this.props.vr.position;
+    let orientation = this.props.vr.orientation;
     
     let cameraProps = {
       fov: 75,
       aspect: window.innerWidth / window.innerHeight,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(position.x, position.y, position.z),
-      lookat: new THREE.Vector3(0, 0, 0)
+      position: new THREE.Vector3(position.x * 75, position.y * 25 + 5, position.z * 75),
+      quaternion: new THREE.Quaternion(orientation.x, orientation.y, orientation.z, orientation.w)
     };
     
     return (
@@ -73,9 +74,11 @@ class Home extends Component {
           width={window.innerWidth}
           camera="main">
           <PerspectiveCamera name="main" {...cameraProps}/>
-          <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
-          <AmbientLight color={0x050505}/>
+          <SpotLight
+            position={new THREE.Vector3(0, 600, 100)}
+          />
           <Car name="car" model="veyron"/>
+          <HudPanel name="hudPanel"/>
           <Floor name="floor"/>
         </Scene>
         <div>
