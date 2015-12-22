@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import THREE from 'three';
 import { AmbientLight, DirectionalLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
 import Car from '../Car.jsx';
+import Floor from '../Floor.jsx';
 import * as VRActions from '../../actions/vr';
 
 window.THREE = THREE;
@@ -75,6 +76,7 @@ class Home extends Component {
           <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
           <AmbientLight color={0x050505}/>
           <Car name="car" model="veyron"/>
+          <Floor name="floor"/>
         </Scene>
         <div>
           <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen"><i className="fa fa-arrows-alt"></i> Launch VR</button>
