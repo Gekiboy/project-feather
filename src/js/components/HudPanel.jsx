@@ -34,7 +34,7 @@ class HudPanel extends Component {
     let map = THREE.ImageUtils.loadTexture( '/textures/panel-swatch.png' );
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
     map.anisotropy = 16;
-    let material = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
+    let material = new THREE.MeshLambertMaterial( { map: map, side: THREE.FrontSide } );
 
     return (
       <Mesh
