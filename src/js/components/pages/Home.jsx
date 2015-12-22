@@ -31,9 +31,16 @@ function mapDispatchToProps(dispatch) {
 
 class Home extends Component {
   
+  constructor() {
+    super();
+    this.state = {
+      aspect: window.innerWidth / window.innerHeight
+    };
+  }
+  
   animate() {
     this.props.requestVRStateUpdate();
-    requestAnimationFrame(this.animate.bind(this));
+    requestAnimationFrame(::this.animate);
   }
   
   componentWillMount() {
@@ -43,12 +50,24 @@ class Home extends Component {
   }
   
   componentDidMount() {
-    let renderer = this.refs.scene._THREErenderer;
+    let renderer = this.refs.scene.getRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    window.addEventListener('resize', ::this.onWindowResize, false);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('resize', ::this.onWindowResize);    
   }
   
   onFullscreenClick() {
     this.refs.scene.getEffect().setFullScreen(true);
+  }
+  
+  onWindowResize() {
+    this.refs.scene.getEffect().setSize(window.innerWidht, twindow.innerHeight);
+    this.setState({
+      aspect: window.innerWidth / window.innerHeight
+    });
   }
   
   render() {
@@ -57,6 +76,7 @@ class Home extends Component {
     let orientation = this.props.vr.orientation;
     
     let cameraProps = {
+      aspect: this.state.aspect,
       fov: 75,
       aspect: window.innerWidth / window.innerHeight,
       near: 1,
