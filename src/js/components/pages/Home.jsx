@@ -11,6 +11,7 @@ import * as VRActions from '../../actions/vr';
 window.THREE = THREE;
 
 require('../../VREffect');
+require('../../VRControls');
 require('../../StereoEffect');
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -40,19 +41,21 @@ class Home extends Component {
   
   animate() {
     this.props.requestVRStateUpdate();
+    this.vrControls.update(this.props.vr.inputs);
     requestAnimationFrame(::this.animate);
   }
   
   componentWillMount() {
     this.props.discoverVRInputDevices();
     this.props.requestVRStateUpdate();
-    this.animate();
   }
   
   componentDidMount() {
     let renderer = this.refs.scene.getRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     window.addEventListener('resize', ::this.onWindowResize, false);
+    this.vrControls = new THREE.VRControls(this.refs.camera);
+    this.animate();
   }
   
   componentWillUnmount() {
@@ -64,7 +67,7 @@ class Home extends Component {
   }
   
   onWindowResize() {
-    this.refs.scene.getEffect().setSize(window.innerWidht, twindow.innerHeight);
+    this.refs.scene.getEffect().setSize(window.innerWidht, window.innerHeight);
     this.setState({
       aspect: window.innerWidth / window.innerHeight
     });
@@ -93,7 +96,7 @@ class Home extends Component {
           width={window.innerWidth}
           camera="main"
           effect={THREE.VREffect}>
-          <PerspectiveCamera name="main" {...cameraProps}/>
+          <PerspectiveCamera ref="camera" name="main" {...cameraProps}/>
           <SpotLight
             position={new THREE.Vector3(0, 600, 100)}
           />
