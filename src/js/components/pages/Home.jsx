@@ -60,7 +60,7 @@ class Home extends Component {
       aspect: window.innerWidth / window.innerHeight,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(position.x, position.y, position.z),
+      position: new THREE.Vector3(position.x * 5000, position.y * 5000, position.z * 5000),
       lookat: new THREE.Vector3(0, 0, 0)
     };
     
