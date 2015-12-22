@@ -55,8 +55,6 @@ class Home extends Component {
     
     let position = this.props.vr.position;
     
-    window.update
-    
     let cameraProps = {
       fov: 75,
       aspect: window.innerWidth / window.innerHeight,
