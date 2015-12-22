@@ -1,0 +1,79 @@
+// App
+// Master stylesheet for the app.
+// ------------------------------
+
+// Setup
+@import "base/config";
+@import "base/mixins";
+@import "base/normalize";
+
+// Common
+@import "global/buttons";
+@import "global/panels";
+@import "global/typography";
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+// General
+html {
+    height: 100%;
+}
+
+body {
+    font-size: $font-size-root;
+    background: $black;
+    color: $white;
+    height: 100%;
+}
+
+// Typography
+h1, h2, h3 {
+    font-family: $font-stack-light;
+}
+
+h4, h5, h6 {
+    font-family: $font-stack-semilight;
+}
+
+// Container setup
+
+#app, #app > div, #app > div > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+    color: $black;
+    background: rgba($white, 0.9);
+    padding: 1rem;
+    align-items: center;
+    
+    .wordmark {
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+    }
+
+    .logo {
+        width: 4rem;
+    }
+}
+
+// HUD display
+aside {
+    position: fixed;
+    top: 5rem;
+    right: 10%;
+    z-index: 1;
+}

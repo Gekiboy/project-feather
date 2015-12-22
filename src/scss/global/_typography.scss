@@ -1,0 +1,80 @@
+// Font imports
+@font-face {
+    font-family: 'segoe-ui-normal';
+    src: url('../fonts/segoe-ui-normal.eot');
+    src: url('../fonts/segoe-ui-normal.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoe-ui-normal.woff') format('woff'),
+         url('../fonts/segoe-ui-normal.ttf') format('truetype'),
+         url('../fonts/segoe-ui-normal.svg#segoe-ui-normal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'segoe-ui-light';
+    src: url('../fonts/segoe-ui-light.eot');
+    src: url('../fonts/segoe-ui-light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoe-ui-light.woff') format('woff'),
+         url('../fonts/segoe-ui-light.ttf') format('truetype'),
+         url('../fonts/segoe-ui-light.svg#segoe-ui-light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'segoe-ui-semilight';
+    src: url('../fonts/segoe-ui-semilight.eot');
+    src: url('../fonts/segoe-ui-semilight.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoe-ui-semilight.woff') format('woff'),
+         url('../fonts/segoe-ui-semilight.ttf') format('truetype'),
+         url('../fonts/segoe-ui-semilight.svg#segoe-ui-semilight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'segoe-ui-semibold';
+    src: url('../fonts/segoe-ui-semibold.eot');
+    src: url('../fonts/segoe-ui-semibold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoe-ui-semibold.woff') format('woff'),
+         url('../fonts/segoe-ui-semibold.ttf') format('truetype'),
+         url('../fonts/segoe-ui-semibold.svg#segoe-ui-semibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'segoe-ui-italic';
+    src: url('../fonts/segoe-ui-italic.eot');
+    src: url('../fonts/segoe-ui-italic.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/segoe-ui-italic.woff') format('woff'),
+         url('../fonts/segoe-ui-italic.ttf') format('truetype'),
+         url('../fonts/segoe-ui-italic.svg#segoe-ui-italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// Custom weight mappings (stacks declared in custom settings under config)
+h1, h2 {
+    font-family: $font-stack-light;
+}
+
+h3, h4 {
+    font-family: $font-stack-semilight;
+    span {
+        font-family: $font-stack-default;
+    }
+}
+
+em, i {
+    font-family: $font-stack-italic;
+    font-style: normal !important;
+}
+
+strong, dt, th, b, legend {
+    font-family: $font-stack-semibold;
+    font-weight: normal !important;
+}
+
+// Manual anti-aliasing and base sizing
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: $font-size-root;
+}

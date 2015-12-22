@@ -1,0 +1,74 @@
+// Font aliasing helper
+@mixin antialiasing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Translate (3D only)
+@mixin translate($x: 0, $y: 0, $z: 0) {
+    @include transform(translate3d($x, $y, $z));
+}
+
+// Translate
+@mixin translate($x: 0, $y: 0, $z: false) {
+    @if $z {
+        transform: translate3d($x, $y, $z);
+    } @else {
+        transform: translate($x, $y);
+    }
+}
+
+// Force a hardware render
+@mixin gpu-rendering {
+    @include translate(0, 0, 0);
+}
+
+// High contrast reset (typically used in combination with a custom treatment)
+@mixin reset-high-contrast {
+    @media #{$high-contrast-active} {
+        -ms-high-contrast-adjust: none;
+    }
+}
+
+// Aspect ratio sizer
+@mixin aspect-ratio($width: 1, $height: 1, $inner: false, $inset: 0) {
+    position: relative;
+
+    @if $inner {
+        & > * {
+            position: absolute;
+            top: $inset;
+            left: $inset;
+            bottom: $inset;
+            right: $inset;
+        }
+    }
+
+    &::before {
+        display: block;
+        content: '';
+        padding-top: percentage($height / $width);
+    }
+}
+
+// Animation delay offsetting (use sparingly; for several elements, set inline values via javascript)
+@mixin animation-offset($name, $duration: 1s, $iteration: infinite, $fill: none, $easing: linear, $items: 1, $offset: 0.1s, $delay: 0) {
+    & > * {
+        animation: $name $duration $iteration $fill $easing;
+        @for $i from 1 through $items {
+            &:nth-child(#{$i}) {
+                animation-delay: $delay + ($offset * $i);
+            }
+        }
+    }
+}
+
+// Sub-section animation helper (@todo: per the above, consider javascript for this)
+@mixin block-slide-offset($items: 1, $duration: 0.8s, $offset: 0.1s, $easing: $transition-timing, $delay: 0) {
+    @include animation-offset(blockSlide, $duration, 1, forwards, $easing, $items, $offset, $delay);
+
+    & > * {
+        opacity: 0;
+        transform: translate3d(0, 10rem, 0);
+    }
+}

@@ -1,0 +1,14 @@
+button {
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    background: $brand-bright-red;
+    color: $white;
+    border: 0;
+
+    &.fullscreen {
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        border-top-left-radius: 0.5rem;
+    }
+}

@@ -72,7 +72,6 @@ class Home extends Component {
     
     return (
       <div>
-        <h1 onClick={this.onFullscreenClick.bind(this)}>Hi</h1>
         <Scene
           ref="scene"
           height={window.innerHeight}
@@ -83,6 +82,8 @@ class Home extends Component {
           <AmbientLight color={0x050505}/>
           <Car name="car" model="veyron"/>
         </Scene>
+        <br />
+        <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen fa fa-arrows-alt"></button>
       </div>
     );
   }
