@@ -33,7 +33,7 @@ function getInputs(devices) {
 function getInputStates(inputs) {
   let inputStates = {};
   
-  if (inputes.length > 0) {
+  if (inputs.length > 0) {
     inputs.forEach(input => {
       let state = input.getState();
       
@@ -46,25 +46,27 @@ function getInputStates(inputs) {
       }
     });
   }
-  else {
-    inputStates.orientation = {
-      w: 1,
-      x: Math.random(),
-      y: Math.random(),
-      z: Math.random()
-    };
-    inputStates.position = {
-      x: Math.random(),
-      y: Math.ranom(),
-      z: Math.random()
-    };
+  
+  if (inputStates.orientation && inputStates.position) {
+    console.log(JSON.stringify({
+      orientation: {
+        w: inputStates.orientation.w,
+        x: inputStates.orientation.x,
+        y: inputStates.orientation.y,
+        z: inputStates.orientation.z
+      },
+      position: {
+        x: inputStates.position.x,
+        y: inputStates.position.y,
+        z: inputStates.position.z
+      }
+    }));
   }
   
   return inputStates;
 }
 
 export default (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
     case REQUEST_VR_STATE_UPDATE:
       return Object.assign({}, state, getInputStates(state.inputs));

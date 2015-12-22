@@ -21,7 +21,7 @@ let routes = (
 );
 
 let store = compose(
-  applyMiddleware(promiseMiddleware)
+  applyMiddleware(promiseMiddleware())
 )(createStore)(combineReducers(reducers));
 
 syncReduxAndRouter(history, store);
