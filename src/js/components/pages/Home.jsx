@@ -45,7 +45,7 @@ class Home extends Component {
     
     return (
       <div>
-        <h1 onClick={this.onFullscreenClick}>Hi</h1>
+        <h1 onClick={this.onFullscreenClick.bind(this)}>Hi</h1>
         <Scene
           ref="scene"
           height={400}
