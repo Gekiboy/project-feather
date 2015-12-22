@@ -42,7 +42,11 @@ function getInputStates(inputs) {
       }
       
       if (state.position !== null) {
-        inputStates.position = state.position;
+        inputStates.position = {
+          x: state.position.x * 75,
+          y: state.position.y * 25,
+          z: state.position.z * 75
+        };
       }
     });
   }
@@ -56,9 +60,9 @@ function getInputStates(inputs) {
         z: inputStates.orientation.z
       },
       position: {
-        x: inputStates.position.x * 75,
-        y: inputStates.position.y * 25,
-        z: inputStates.position.z * 75
+        x: inputStates.position.x,
+        y: inputStates.position.y,
+        z: inputStates.position.z
       }
     }));
   }
