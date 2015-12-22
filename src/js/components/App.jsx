@@ -4,7 +4,6 @@ let {
 } = React;
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import * as ConfigActions from '../actions/config';
 
 var styles = {
   container: {
@@ -27,9 +26,7 @@ var styles = {
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
-  return {
-    config: state.config
-  };
+  return {};
 }
 
 // Which action creators does it want to receive by props?
@@ -43,7 +40,6 @@ class App extends Component {
   
   componentDidMount() {
     let { dispatch } = this.props;
-    dispatch(ConfigActions.fetch());
   }
   
   render() {

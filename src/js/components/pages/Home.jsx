@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import THREE from 'three';
 import { AmbientLight, DirectionalLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
 import Car from '../Car.jsx';
+import * as VRActions from '../../actions/vr';
 
 window.THREE = THREE;
 
@@ -13,31 +14,30 @@ require('../../VREffect');
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
   return {
-    config: state.config
+    config: state.config,
+    vr: state.vr
   };
 }
 
 // Which action creators does it want to receive by props?
 function mapDispatchToProps(dispatch) {
   return {
-    
+    discoverVRInputDevices: () => dispatch(VRActions.discoverVRInputDevices()),
+    requestVRStateUpdate: () => dispatch(VRActions.requestVRStateUpdate())
   };
 }
 
 class Home extends Component {
   
-  constructor() {
-    super();
-    this.state = {
-      perspective: {
-        fov: 75,
-        aspect: window.innerWidth / window.innerHeight,
-        near: 1,
-        far: 5000,
-        position: new THREE.Vector3(0, 50, 200),
-        lookat: new THREE.Vector3(0, 0, 0)
-      }
-    };
+  animate() {
+    this.props.requestVRStateUpdate();
+    requestAnimationFrame(this.animate);
+  }
+  
+  componentWillMount() {
+    this.props.discoverVRInputDevices();
+    this.props.requestVRStateUpdate();
+    this.animate();
   }
   
   componentDidMount() {
@@ -45,11 +45,10 @@ class Home extends Component {
     this.vrEffect = new THREE.VREffect(renderer, function (err) {
       console.error(err);
     });
-    this.vrControls = new THREE.VRControls(this.refs.camera);
-    let that = this;
-    setInterval(function () {
-      that.vrControls.update();
-    }, 20);
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    
   }
   
   onFullscreenClick() {
@@ -58,6 +57,19 @@ class Home extends Component {
   
   render() {
     
+    let position = this.props.vr.position;
+    
+    window.update
+    
+    let cameraProps = {
+      fov: 75,
+      aspect: window.innerWidth / window.innerHeight,
+      near: 1,
+      far: 5000,
+      position: new THREE.Vector3(position.x, position.y, position.z),
+      lookat: new THREE.Vector3(0, 0, 0)
+    };
+    
     return (
       <div>
         <h1 onClick={this.onFullscreenClick.bind(this)}>Hi</h1>
@@ -65,10 +77,8 @@ class Home extends Component {
           ref="scene"
           height={window.innerHeight}
           width={window.innerWidth}
-          camera="main"
-          VRControls={this.vrControls}
-          VRControlsTarget="car">
-          <PerspectiveCamera name="main" {...this.state.perspective}/>
+          camera="main">
+          <PerspectiveCamera name="main" {...cameraProps}/>
           <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
           <AmbientLight color={0x050505}/>
           <Car name="car" model="veyron"/>

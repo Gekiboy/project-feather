@@ -1,7 +1,7 @@
 import { routeReducer } from 'redux-simple-router';
-import config from './config';
+import vr from './vr';
 
 export default {
   routing: routeReducer,
-  config
+  vr
 };
