@@ -43,7 +43,7 @@ class Home extends Component {
   
   animate() {
     this.props.requestVRStateUpdate();
-    this.vrControls.update(this.props.vr.inputs);
+    this.vrControls.update(this.props.vr);
     requestAnimationFrame(::this.animate);
   }
   
@@ -69,7 +69,7 @@ class Home extends Component {
   }
   
   onWindowResize() {
-    this.refs.scene.getEffect().setSize(window.innerWidht, window.innerHeight);
+    this.refs.scene.getEffect().setSize(window.innerWidth, window.innerHeight);
     this.setState({
       aspect: window.innerWidth / window.innerHeight
     });
@@ -86,7 +86,7 @@ class Home extends Component {
       aspect: window.innerWidth / window.innerHeight,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(position.x * 75, position.y * 25 + 5, position.z * 75),
+      position: new THREE.Vector3(position.x, position.y, position.z),
       quaternion: new THREE.Quaternion(orientation.x, orientation.y, orientation.z, orientation.w)
     };
 

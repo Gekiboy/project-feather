@@ -42,7 +42,11 @@ function getInputStates(inputs) {
       }
       
       if (state.position !== null) {
-        inputStates.position = state.position;
+        inputStates.position = {
+          x: state.position.x * 75,
+          y: state.position.y * 25,
+          z: state.position.z * 75
+        };
       }
     });
   }
