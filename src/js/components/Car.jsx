@@ -130,7 +130,6 @@ class Car extends Component {
         material.materials[i] = mmap[i];
       }
       
-      scale = new THREE.Vector3(1, 1, 1);
       position = new THREE.Vector3(0, 0, 0);
       rotation = new THREE.Vector3(rotation[0], rotation[1], rotation[2]);
       geometry = this.state.geometry;
@@ -138,10 +137,11 @@ class Car extends Component {
     else {
       material = new THREE.MeshBasicMaterial();
       position = new THREE.Vector3(0, 0, 0);
-      scale = new THREE.Vector3(1, 1, 1);
       rotation = new THREE.Vector3(0, 0, 0);
       geometry = new THREE.Geometry();
     }
+    
+    scale = new THREE.Vector3(0.75, 0.75, 0.75);
     
     return (
       <Mesh
