@@ -1,0 +1,56 @@
+import {
+  DISCOVER_VR_INPUTS_FULFILLED,
+  REQUEST_VR_STATE_UPDATE
+} from '../actions/vr';
+
+const defaultState = {
+  inputs: [],
+  orientation: null,
+  position: {
+    x: 0,
+    y: 50,
+    z: 200
+  }
+};
+
+function getInputs(devices) {
+  let vrDevices = devices.filter(device => device.deviceName
+      && (device.deviceName.toLowerCase().indexOf('oculus') !== -1
+      || device.deviceName.toLowerCase().indexOf('vive') !== -1));
+
+  if (vrDevices.length >= 1) {
+    vrDevices = vrDevices.filter(device => device.deviceName && device.deviceName.toLowerCase().indexOf('cardboard') === -1);
+  }
+  
+  return vrDevices.filter(device => device instanceof PositionSensorVRDevice);
+}
+
+function getInputStates(inputs) {
+  let inputStates = {};
+  
+  inputs.forEach(input => {
+    let state = input.getState();
+    
+    if (state.orientation !== null) {
+      inputStates.orientation = state.orientation;
+    }
+    
+    if (state.position !== null) {
+      inputStates.position = state.position;
+    }
+  });
+  
+  return inputStates;
+}
+
+export default (state = defaultState, action) => {
+  console.log(action);
+  switch (action.type) {
+    case REQUEST_VR_STATE_UPDATE:
+      return Object.assign({}, state, getInputStates(state.inputs));
+    case DISCOVER_VR_INPUTS_FULFILLED:
+      return Object.assign({}, state, { inputs: getInputs(action.payload) });
+    default:
+      return state;
+  }
+};
