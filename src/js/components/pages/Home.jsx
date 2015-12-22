@@ -67,7 +67,7 @@ class Home extends Component {
   }
   
   onWindowResize() {
-    this.refs.scene.getEffect().setSize(window.innerWidht, window.innerHeight);
+    this.refs.scene.getEffect().setSize(window.innerWidth, window.innerHeight);
     this.setState({
       aspect: window.innerWidth / window.innerHeight
     });
