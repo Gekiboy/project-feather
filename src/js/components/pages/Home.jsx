@@ -5,9 +5,10 @@ import THREE from 'three';
 import { AmbientLight, DirectionalLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
 import Car from '../Car.jsx';
 
-console.log(AmbientLight);
-
 window.THREE = THREE;
+
+require('../../VRControls');
+require('../../VREffect');
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
@@ -25,6 +26,13 @@ function mapDispatchToProps(dispatch) {
 
 class Home extends Component {
   
+  onFullscreenClick() {
+    let renderer = this.refs.scene._THREErenderer;
+    let vrEffect = new THREE.VREffect(renderer, function (err) {
+      console.error(err);
+    });
+  }
+  
   render() {
     let cameraProps = {
       fov: 75,
@@ -37,8 +45,14 @@ class Home extends Component {
     
     return (
       <div>
-        <h1>Hi</h1>
-        <Scene height={400} width={400} camera="main">
+        <h1 onClick={this.onFullscreenClick}>Hi</h1>
+        <Scene
+          ref="scene"
+          height={400}
+          width={400}
+          camera="main"
+          VRControls={THREE.VRControls}
+          VRControlsTarget="car">
           <PerspectiveCamera name="main" {...cameraProps}/>
           <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
           <AmbientLight color={0x050505}/>
