@@ -23,15 +23,9 @@ html {
 
 body {
     font-size: $font-size-root;
+    background: $black;
     color: $white;
     height: 100%;
-}
-
-canvas {
-    margin: auto;
-    width: 400px;
-    height: 400px;
-    display: block;
 }
 
 // Typography
@@ -49,6 +43,7 @@ h4, h5, h6 {
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 header {
@@ -59,8 +54,8 @@ header {
     display: flex;
     justify-content: space-between;
     height: 4rem;
-    background: rgba($black, 0.8);
-    border-bottom: 1px solid rgba($white, 0.1);
+    color: $black;
+    background: rgba($white, 0.9);
     padding: 1rem;
     align-items: center;
     

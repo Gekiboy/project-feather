@@ -1,7 +1,8 @@
 button {
     border-radius: 0;
     padding: 0.5rem 1rem;
-    background: $black;
+    background: $brand-bright-red;
+    color: $white;
     border: 0;
 
     &.fullscreen {
