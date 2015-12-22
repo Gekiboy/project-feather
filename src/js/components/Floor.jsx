@@ -24,23 +24,18 @@ class Floor extends Component {
     this.state = {};
   }
 
-  componentDidUpdate() {
-    var timer = Date.now() * 0.0001;
-    console.log(timer);
-    let rotation = new THREE.Vector3(timer * 5, timer * 2.5, 0);
-    this.setState({rotation: rotation});
-  }
-
   render() {
     let geometry = new THREE.PlaneGeometry( 100, 100, 4, 4 );
-    let scale = new THREE.Vector3(1, 1, 1);
-    let position = new THREE.Vector3(0, 0, 0);
-    let rotation = this.state.rotation || new THREE.Vector3(0, 0, 0);
+    let scale = new THREE.Vector3(20, 20, 20);
+    let position = new THREE.Vector3(0, -50, 0);
+    let quaternion = new THREE.Quaternion();
+    quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 2);
 
     let map = THREE.ImageUtils.loadTexture( '/textures/concrete-256.jpg' );
     map.wrapS = map.wrapT = THREE.RepeatWrapping;
+    map.repeat.set( 10, 10 );
     map.anisotropy = 16;
-    let material = new THREE.MeshLambertMaterial( { map: map, side: THREE.FrontSide } );
+    let material = new THREE.MeshLambertMaterial( { map: map, side: THREE.BackSide } );
 
     return (
       <Mesh
@@ -49,7 +44,7 @@ class Floor extends Component {
         material={material}
         scale={scale}
         position={position}
-        rotation={rotation}
+        quaternion={quaternion}
       />
     );
   }
