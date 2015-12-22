@@ -31,7 +31,7 @@ class Home extends Component {
   
   animate() {
     this.props.requestVRStateUpdate();
-    requestAnimationFrame(this.animate);
+    requestAnimationFrame(this.animate.bind(this));
   }
   
   componentWillMount() {
@@ -45,10 +45,6 @@ class Home extends Component {
     this.vrEffect = new THREE.VREffect(renderer, function (err) {
       console.error(err);
     });
-  }
-  
-  componentWillReceiveProps(nextProps) {
-    
   }
   
   onFullscreenClick() {
