@@ -7,14 +7,14 @@ const defaultState = {
   inputs: [],
   orientation: {
     w: 1,
-    x: -0.05,
-    y: 0.3,
+    x: 0,
+    y: 0,
     z: 0
   },
   position: {
-    x: 0.3,
-    y: 0.2,
-    z: 0.05
+    x: 0.5,
+    y: 1,
+    z: 1
   }
 };
 
