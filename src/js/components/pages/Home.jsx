@@ -45,6 +45,7 @@ class Home extends Component {
   componentDidMount() {
     let renderer = this.refs.scene._THREErenderer;
     this.vrEffect = new THREE.VREffect(renderer);
+    renderer.setSize(window.innerWidth, window.innerHeight);
   }
   
   onFullscreenClick() {
