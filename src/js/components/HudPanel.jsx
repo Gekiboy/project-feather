@@ -25,15 +25,16 @@ class HudPanel extends Component {
   }
 
   render() {
-    let geometry = new THREE.PlaneGeometry( 40, 40, 4, 4 );
+    let geometry = new THREE.PlaneGeometry( 70, 70, 4, 4 );
     let scale = new THREE.Vector3(1, 1, 1);
-    let position = new THREE.Vector3(70, 20, 70);
+    let position = new THREE.Vector3(90, 20, 0);
     let quaternion = new THREE.Quaternion();
-    quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0.2), Math.PI / 2);
+    quaternion.setFromAxisAngle(new THREE.Vector3(-0.2, -0.3, 0), Math.PI / 2);
 
     let map = THREE.ImageUtils.loadTexture( '/textures/panel-swatch.png' );
+    map.wrapS = map.wrapT = THREE.RepeatWrapping;
     map.anisotropy = 16;
-    let material = new THREE.MeshBasicMaterial( { side: THREE.FrontSide } );
+    let material = new THREE.MeshLambertMaterial( { map: map, side: THREE.DoubleSide } );
 
     return (
       <Mesh

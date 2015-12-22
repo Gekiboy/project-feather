@@ -93,16 +93,6 @@ CARS[ "veyron" ].materials = {
 		[ "Chrome", 	mlib[ "Chrome" ] ]
 	],
 };
-CARS[ "veyron" ].mmap = {
-	0: mlib[ "Black rough" ],		// tires + inside
-	1: mlib[ "Pure chrome" ],		// wheels + extras chrome
-	2: CARS['veyron'].materials.body[ CARS[ "veyron" ].init_material ][ 1 ], 			// back / top / front torso
-	3: mlib[ "Dark glass" ],		// glass
-	4: mlib[ "Pure chrome" ],		// sides torso
-	5: mlib[ "Pure chrome" ],		// engine
-	6: mlib[ "Red glass 50" ],		// backlights
-	7: mlib[ "Orange glass 50" ]	// backsignals
-};
 
 let loader = new THREE.BinaryLoader();
 
@@ -119,6 +109,18 @@ class Car extends Component {
   }
   
   render() {
+    CARS[ "veyron" ].mmap = {
+      0: mlib[ "Black rough" ],   // tires + inside
+      1: mlib[ "Pure chrome" ],   // wheels + extras chrome
+      2: CARS['veyron'].materials.body[ carColor ][ 1 ],      // back / top / front torso
+      3: mlib[ "Dark glass" ],    // glass
+      4: mlib[ "Pure chrome" ],   // sides torso
+      5: mlib[ "Pure chrome" ],   // engine
+      6: mlib[ "Red glass 50" ],    // backlights
+      7: mlib[ "Orange glass 50" ]  // backsignals
+    };
+
+
     let car = CARS[this.props.model];
     let geometry, scale, position, rotation;
     let material = new MeshFaceMaterial();
@@ -142,7 +144,7 @@ class Car extends Component {
     }
     
     scale = new THREE.Vector3(0.75, 0.75, 0.75);
-    
+
     return (
       <Mesh
         name={this.props.name}

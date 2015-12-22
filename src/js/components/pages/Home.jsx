@@ -30,6 +30,8 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+window.carColor = 4;
+
 class Home extends Component {
   
   constructor() {
@@ -87,7 +89,7 @@ class Home extends Component {
       position: new THREE.Vector3(position.x * 75, position.y * 25 + 5, position.z * 75),
       quaternion: new THREE.Quaternion(orientation.x, orientation.y, orientation.z, orientation.w)
     };
-    
+
     return (
       <div>
         <Scene
@@ -100,7 +102,7 @@ class Home extends Component {
           <SpotLight
             position={new THREE.Vector3(0, 600, 100)}
           />
-          <Car name="car" model="veyron"/>
+          <Car name="car" model="veyron" carColor={carColor}/>
           <HudPanel name="hudPanel"/>
           <Floor name="floor"/>
         </Scene>
