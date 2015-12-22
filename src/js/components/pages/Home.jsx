@@ -61,7 +61,7 @@ class Home extends Component {
       aspect: window.innerWidth / window.innerHeight,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(position.x * 50, position.y * 10, position.z * 50),
+      position: new THREE.Vector3(position.x * 50, position.y * 50, position.z * 50),
       quaternion: new THREE.Quaternion(orientation.x, orientation.y, orientation.z, orientation.w)
     };
     
