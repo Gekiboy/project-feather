@@ -5,11 +5,16 @@ import {
 
 const defaultState = {
   inputs: [],
-  orientation: null,
+  orientation: {
+    w: 1,
+    x: -0.05,
+    y: 0.3,
+    z: 0
+  },
   position: {
-    x: 0,
-    y: 50,
-    z: 200
+    x: 0.3,
+    y: 0.2,
+    z: 0.05
   }
 };
 
@@ -28,17 +33,32 @@ function getInputs(devices) {
 function getInputStates(inputs) {
   let inputStates = {};
   
-  inputs.forEach(input => {
-    let state = input.getState();
-    
-    if (state.orientation !== null) {
-      inputStates.orientation = state.orientation;
-    }
-    
-    if (state.position !== null) {
-      inputStates.position = state.position;
-    }
-  });
+  if (inputes.length > 0) {
+    inputs.forEach(input => {
+      let state = input.getState();
+      
+      if (state.orientation !== null) {
+        inputStates.orientation = state.orientation;
+      }
+      
+      if (state.position !== null) {
+        inputStates.position = state.position;
+      }
+    });
+  }
+  else {
+    inputStates.orientation = {
+      w: 1,
+      x: Math.random(),
+      y: Math.random(),
+      z: Math.random()
+    };
+    inputStates.position = {
+      x: Math.random(),
+      y: Math.ranom(),
+      z: Math.random()
+    };
+  }
   
   return inputStates;
 }

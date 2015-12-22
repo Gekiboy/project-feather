@@ -131,7 +131,7 @@ class Car extends Component {
       }
       
       scale = scale ? new THREE.Vector3(scale, scale, scale) : new THREE.Vector3(1, 1, 1);
-      position = new THREE.Vector3(0, 0, 0);
+      position = new THREE.Vector3(0, 36, 0);
       rotation = new THREE.Vector3(rotation[0], rotation[1], rotation[2]);
       geometry = this.state.geometry;
     }
