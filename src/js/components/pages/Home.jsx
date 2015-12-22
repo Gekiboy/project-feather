@@ -49,7 +49,6 @@ class Home extends Component {
     
     return (
       <div>
-        <h1>Hi</h1>
         <Scene height={400} width={400} camera="main">
           <PerspectiveCamera name="main" {...cameraProps}/>
           <Mesh

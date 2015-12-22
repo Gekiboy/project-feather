@@ -1,0 +1,56 @@
+// ----------------------------------------------
+// Colours
+//-----------------------------------------------
+
+// Greyscale
+$white:                             #f5feff;
+$grey-lighter:                      #edf1f4;
+$grey-light:                        #dae4eb;
+$grey:                              #c1cbd2;
+$grey-dark:                         #6a6e72;
+$grey-darker:                       #21131d;
+$black:                             #0b0b0b;
+
+
+// ------------------------------------------------------------
+// Typography
+// ------------------------------------------------------------
+
+$font-size-root:                    16px;
+
+// Typography
+$font-stack-default:                segoe-ui-normal, Helvetica, Roboto, Arial, sans-serif;
+$font-stack-light:                  segoe-ui-light, Helvetica, Roboto, Arial, sans-serif;
+$font-stack-italic:                 segoe-ui-italic, Helvetica, Roboto, Arial, sans-serif;
+$font-stack-semilight:              segoe-ui-semilight, Helvetica, Roboto, Arial, sans-serif;
+$font-stack-semibold:               segoe-ui-semibold, Helvetica, Roboto, Arial, sans-serif;
+
+$font-stack-secondary:              "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Color
+$base-font-color:                   $white;
+
+// Line height
+$base-line-height:                  1.5;
+$base-line-height-small:            1.25;
+$heading-line-height:               1;
+
+
+// ------------------------------------------------------------
+// Borders
+// ------------------------------------------------------------
+
+$border-width:                      2px;
+$border-color:                      $grey-light;
+$base-border-radius:                0;
+
+
+// ------------------------------------------------------------
+// Animation
+// ------------------------------------------------------------
+
+$base-duration:                     0.25s;
+$base-timing:                       ease;
+$transition-timing:                 cubic-bezier(0.1, 0.8, 0.2, 1);
+$transition-duration:               0.7s;
+$slide-duration:                    $transition-duration;

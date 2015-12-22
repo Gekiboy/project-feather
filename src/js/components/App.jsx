@@ -50,7 +50,6 @@ class App extends Component {
     
     return (
       <div>
-        <Link to="/home">Go to Welcome page</Link>
         {this.props.children}
       </div>
     );
