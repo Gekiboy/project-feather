@@ -29,7 +29,7 @@ class Home extends Component {
       aspect: 1,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(0, 0, 10),
+      position: new THREE.Vector3(0, 0, 100),
       lookat: new THREE.Vector3(0, 0, 0)
     };
     
