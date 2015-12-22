@@ -32,7 +32,7 @@ class Home extends Component {
   
   animate() {
     this.props.requestVRStateUpdate();
-    requestAnimationFrame(this.animate);
+    requestAnimationFrame(this.animate.bind(this));
   }
   
   componentWillMount() {
@@ -48,10 +48,6 @@ class Home extends Component {
     });
   }
   
-  componentWillReceiveProps(nextProps) {
-    
-  }
-  
   onFullscreenClick() {
     this.vrEffect.setFullScreen(true);
   }
@@ -59,8 +55,6 @@ class Home extends Component {
   render() {
     
     let position = this.props.vr.position;
-    
-    window.update
     
     let cameraProps = {
       fov: 75,
@@ -84,8 +78,9 @@ class Home extends Component {
           <Car name="car" model="veyron"/>
           <Floor name="floor"/>
         </Scene>
-        <br />
-        <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen fa fa-arrows-alt"></button>
+        <div>
+          <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen"><i className="fa fa-arrows-alt"></i> Launch VR</button>
+        </div>
       </div>
     );
   }

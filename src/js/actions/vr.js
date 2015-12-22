@@ -1,7 +1,7 @@
 export const DISCOVER_VR_INPUTS_FULFILLED = 'DISCOVER_VR_INPUTS_FULFILLED';
 export const REQUEST_VR_STATE_UPDATE = 'REQUEST_VR_STATE_UPDATE';
 
-export async function discoverVRInputDevices() {
+export function discoverVRInputDevices() {
   return {
     type: 'DISCOVER_VR_INPUTS',
     payload: {
@@ -10,8 +10,8 @@ export async function discoverVRInputDevices() {
   }
 }
 
-export async function requestVRStateUpdate() {
+export function requestVRStateUpdate() {
   return {
-    type: 'REQUEST_VR_STATE_UPDATE'
+    type: REQUEST_VR_STATE_UPDATE
   }
 }
