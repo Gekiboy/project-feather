@@ -47,7 +47,19 @@ function getInputStates(inputs) {
     });
   }
   
-  console.log(inputStates);
+  console.log(JSON.stringify({
+    orientation: {
+      w: inputStates.orientation.w,
+      x: inputStates.orientation.x,
+      y: inputStates.orientation.y,
+      z: inputStates.orientation.z
+    },
+    position: {
+      x: inputStates.position.x,
+      y: inputStates.position.y,
+      z: inputStates.position.z
+    }
+  }));
   
   return inputStates;
 }
