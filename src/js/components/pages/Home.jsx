@@ -5,6 +5,7 @@ import THREE from 'three';
 import { AmbientLight, SpotLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
 import Car from '../Car.jsx';
 import Floor from '../Floor.jsx';
+import HudPanel from '../HudPanel.jsx';
 import * as VRActions from '../../actions/vr';
 
 window.THREE = THREE;
@@ -76,6 +77,7 @@ class Home extends Component {
             position={new THREE.Vector3(0, 600, 100)}
           />
           <Car name="car" model="veyron"/>
+          <HudPanel name="hudPanel"/>
           <Floor name="floor"/>
         </Scene>
         <div>
