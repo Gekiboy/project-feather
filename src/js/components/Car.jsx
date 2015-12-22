@@ -130,7 +130,7 @@ class Car extends Component {
         material.materials[i] = mmap[i];
       }
       
-      scale = scale ? new THREE.Vector3(scale, scale, scale) : new THREE.Vector3(1, 1, 1);
+      scale = new THREE.Vector3(1, 1, 1);
       position = new THREE.Vector3(0, 0, 0);
       rotation = new THREE.Vector3(rotation[0], rotation[1], rotation[2]);
       geometry = this.state.geometry;
