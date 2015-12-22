@@ -79,7 +79,7 @@ class Home extends Component {
           <Floor name="floor"/>
         </Scene>
         <div>
-          <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen"><i className="fa fa-arrows-alt"></i> Launch VR</button>
+          <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen"><i className="fa fa-arrows-alt"></i><i className="fa fa-play-circle"></i> Launch VR</button>
         </div>
       </div>
     );

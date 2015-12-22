@@ -4,13 +4,50 @@ button {
     background: $brand-bright-red;
     color: $white;
     border: 0;
+    outline: 0;
+    transition: background 0.2s;
+
+    i {
+        width: 1em;
+        height: 1em;
+    }
 
     &.fullscreen {
-        font-size: 2rem;
+        font-size: 1.6rem;
         position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
+        z-index: 2;
+        top: 0.5rem;
+        right: 0.5rem;
         white-space: nowrap;
+        padding-left: 2em;
+
+        i {
+            position: absolute;
+            transition: all 0.2s;
+            left: 0.6em;
+            top: 0.6em;
+
+            &.fa-arrows-alt {
+                transform: scale(0);
+            }
+        }
+
+        .fa-arrows-alt {
+            opacity: 0;
+        }
+
+        &:hover {
+            .fa-play-circle {
+                opacity: 0;
+            }
+            .fa-arrows-alt {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
+    &:hover {
+        background: darken($brand-bright-red, 15%);
     }
 }
