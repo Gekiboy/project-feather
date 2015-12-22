@@ -31,10 +31,10 @@ class Home extends Component {
     this.state = {
       perspective: {
         fov: 75,
-        aspect: 1,
+        aspect: window.innerWidth / window.innerHeight,
         near: 1,
         far: 5000,
-        position: new THREE.Vector3(0, 0, 200),
+        position: new THREE.Vector3(0, 50, 200),
         lookat: new THREE.Vector3(0, 0, 0)
       }
     };
@@ -46,10 +46,13 @@ class Home extends Component {
       console.error(err);
     });
     this.vrControls = new THREE.VRControls(this.refs.camera);
+    let that = this;
+    setInterval(function () {
+      that.vrControls.update();
+    }, 20);
   }
   
   onFullscreenClick() {
-    console.log(this.vrEffect);
     this.vrEffect.setFullScreen(true);
   }
   
@@ -59,8 +62,8 @@ class Home extends Component {
       <div>
         <Scene
           ref="scene"
-          height={400}
-          width={400}
+          height={window.innerHeight}
+          width={window.innerWidth}
           camera="main"
           VRControls={this.vrControls}
           VRControlsTarget="car">
