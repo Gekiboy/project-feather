@@ -2,11 +2,13 @@ import React from 'react';
 const { Component } = React;
 import { connect } from 'react-redux';
 import THREE from 'three';
-import { Mesh, PerspectiveCamera, Scene } from 'react-three';
+import { AmbientLight, DirectionalLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
+import Car from '../Car.jsx';
 
 window.THREE = THREE;
 
-require('../../TeapotBufferGeometry');
+require('../../VRControls');
+require('../../VREffect');
 
 // Which part of the Redux global state does our component want to receive as props?
 function mapStateToProps(state) {
@@ -23,42 +25,40 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Home extends Component {
-  render() {
-    
-    let teapotSize = 1;
-		let newTess = 15;
- 		let bottom = false;
-		let lid = true;
-		let body = true;
-		let fitLid = false;
-		let nonblinn = false;
-		let teapotGeometry = new THREE.TeapotBufferGeometry(teapotSize, newTess, bottom, lid, body, fitLid, nonblinn);
-    let teapotMaterial = new THREE.MeshBasicMaterial({
-      color: 0x00ff00,
-      wireframe: true,
+  
+  onFullscreenClick() {
+    let renderer = this.refs.scene._THREErenderer;
+    let vrEffect = new THREE.VREffect(renderer, function (err) {
+      console.error(err);
     });
-    
+  }
+  
+  render() {
     let cameraProps = {
       fov: 75,
       aspect: 1,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(0, 0, 10),
+      position: new THREE.Vector3(0, 0, 200),
       lookat: new THREE.Vector3(0, 0, 0)
     };
     
     return (
       <div>
-        <Scene height={400} width={400} camera="main">
+        <Scene
+          ref="scene"
+          height={400}
+          width={400}
+          camera="main"
+          VRControls={THREE.VRControls}
+          VRControlsTarget="car">
           <PerspectiveCamera name="main" {...cameraProps}/>
-          <Mesh
-            name="teapot"
-            geometry={teapotGeometry}
-            material={teapotMaterial}
-            scale={new THREE.Vector3(1, 1, 1)}
-            position={new THREE.Vector3(0, 0, 0)}
-          />
+          <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
+          <AmbientLight color={0x050505}/>
+          <Car name="car" model="veyron"/>
         </Scene>
+        <br />
+        <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen fa fa-arrows-alt"></button>
       </div>
     );
   }

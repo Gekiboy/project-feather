@@ -1,0 +1,13 @@
+button {
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+    background: $black;
+    border: 0;
+
+    &.fullscreen {
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        border-top-left-radius: 0.5rem;
+    }
+}

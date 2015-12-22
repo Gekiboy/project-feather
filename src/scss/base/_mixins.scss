@@ -23,60 +23,6 @@
     @include translate(0, 0, 0);
 }
 
-// Text truncate (one line)
-@mixin truncate($width: 100%) {
-    width: $width;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-// Multi-line truncate hack
-@mixin truncate-multiline($height, $matte: $black, $min-height: 0, $line-height: 1.35, $ellipsis-width: 3em) {
-    overflow: hidden;
-    height: $height;
-    line-height: $line-height;
-    box-sizing: content-box;
-    min-height: $min-height;
-
-    & > *:first-child {
-        float: right;
-        width: 100%;
-        margin-left: epx-calc(-5);
-    }        
-
-    &::before {
-        content: '';
-        float: left;
-        width: epx-calc(5);
-        height: $height;
-        line-height: $line-height;
-    }
-
-    &::after {
-        @include reset-high-contrast;
-        box-sizing: content-box;
-        content: '\02026';
-        float: right;
-        position: relative;
-        top: epx-calc(-25);
-        left: 100%; 
-        width: $ellipsis-width;
-        margin-left: -$ellipsis-width;
-        padding: epx-calc(2) epx-calc(5) 0 0;
-        text-align: right;
-        white-space: nowrap;
-        background: linear-gradient(to right, rgba($matte, 0), $matte 50%, $matte);
-
-        @media #{$high-contrast-active} {
-            box-shadow: -0.5em 0.5em 1em Window;
-            background: Window;
-            width: $ellipsis-width / 2;
-            margin-left: -$ellipsis-width / 2;
-        }
-    }
-}
-
 // High contrast reset (typically used in combination with a custom treatment)
 @mixin reset-high-contrast {
     @media #{$high-contrast-active} {

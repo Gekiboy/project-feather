@@ -16,9 +16,22 @@
     box-sizing: border-box;
 }
 
+// General
+html {
+    height: 100%;
+}
+
 body {
     font-size: $font-size-root;
     color: $white;
+    height: 100%;
+}
+
+canvas {
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    display: block;
 }
 
 // Typography
@@ -31,6 +44,13 @@ h4, h5, h6 {
 }
 
 // Container setup
+
+#app, #app > div, #app > div > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 header {
     position: absolute;
     top: 0;
