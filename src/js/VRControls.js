@@ -15,28 +15,10 @@ THREE.VRControls = function ( object, onError ) {
 
 	this.scale = 1;
 
-	this.update = function (inputs) {
-
-		for ( var i = 0; i < vrInputs.length; i ++ ) {
-
-			var vrInput = vrInputs[ i ];
-
-			var state = vrInput.getState();
-
-			if ( state.orientation !== null ) {
-
-				object.quaternion.copy( state.orientation );
-
-			}
-
-			if ( state.position !== null ) {
-
-				object.position.copy( state.position ).multiplyScalar( scope.scale );
-
-			}
-
-		}
-
+	this.update = function (state) {
+    
+    object.quaternion.copy( state.orientation || object.quaternion );
+    object.position.copy( state.position || object.position ).multiplyScalar( scope.scale );
 	};
 
 	this.resetSensor = function () {

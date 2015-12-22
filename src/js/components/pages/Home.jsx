@@ -41,7 +41,7 @@ class Home extends Component {
   
   animate() {
     this.props.requestVRStateUpdate();
-    this.vrControls.update(this.props.vr.inputs);
+    this.vrControls.update(this.props.vr);
     requestAnimationFrame(::this.animate);
   }
   
