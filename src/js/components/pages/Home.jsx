@@ -2,8 +2,10 @@ import React from 'react';
 const { Component } = React;
 import { connect } from 'react-redux';
 import THREE from 'three';
-import { Mesh, PerspectiveCamera, Scene } from 'react-three';
+import { AmbientLight, DirectionalLight, Mesh, PerspectiveCamera, Scene } from 'react-three';
 import Car from '../Car.jsx';
+
+console.log(AmbientLight);
 
 window.THREE = THREE;
 
@@ -29,7 +31,7 @@ class Home extends Component {
       aspect: 1,
       near: 1,
       far: 5000,
-      position: new THREE.Vector3(0, 0, 100),
+      position: new THREE.Vector3(0, 0, 200),
       lookat: new THREE.Vector3(0, 0, 0)
     };
     
@@ -38,6 +40,8 @@ class Home extends Component {
         <h1>Hi</h1>
         <Scene height={400} width={400} camera="main">
           <PerspectiveCamera name="main" {...cameraProps}/>
+          <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
+          <AmbientLight color={0x050505}/>
           <Car name="car" model="veyron"/>
         </Scene>
       </div>

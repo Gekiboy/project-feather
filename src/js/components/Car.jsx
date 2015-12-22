@@ -121,9 +121,7 @@ class Car extends Component {
   
   constructor() {
     super();
-    this.state = {
-      geometry: new THREE.Geometry()
-    };
+    this.state = {};
   }
   componentWillMount() {
     loader.load(CARS.veyron.url, (geometry) => {
@@ -133,7 +131,7 @@ class Car extends Component {
   
   render() {
     let car = CARS[this.props.model];
-    let scale, position, rotation;
+    let geometry, scale, position, rotation;
     let material = new MeshFaceMaterial();
     if (car && this.state.geometry) {
       let { scale, init_rotation, materials, init_materials, body_materials, mmap } = car;
@@ -146,12 +144,14 @@ class Car extends Component {
       scale = scale ? new THREE.Vector3(scale, scale, scale) : new THREE.Vector3(1, 1, 1);
       position = new THREE.Vector3(0, 0, 0);
       rotation = new THREE.Vector3(rotation[0], rotation[1], rotation[2]);
+      geometry = this.state.geometry;
     }
     else {
-      material = null;
+      material = new THREE.MeshBasicMaterial();
       position = new THREE.Vector3(0, 0, 0);
       scale = new THREE.Vector3(1, 1, 1);
       rotation = new THREE.Vector3(0, 0, 0);
+      geometry = new THREE.Geometry();
     }
     
     return (
