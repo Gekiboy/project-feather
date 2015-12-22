@@ -26,22 +26,34 @@ function mapDispatchToProps(dispatch) {
 
 class Home extends Component {
   
-  onFullscreenClick() {
+  constructor() {
+    super();
+    this.state = {
+      perspective: {
+        fov: 75,
+        aspect: 1,
+        near: 1,
+        far: 5000,
+        position: new THREE.Vector3(0, 0, 200),
+        lookat: new THREE.Vector3(0, 0, 0)
+      }
+    };
+  }
+  
+  componentDidMount() {
     let renderer = this.refs.scene._THREErenderer;
-    let vrEffect = new THREE.VREffect(renderer, function (err) {
+    this.vrEffect = new THREE.VREffect(renderer, function (err) {
       console.error(err);
     });
+    this.vrControls = new THREE.VRControls(this.refs.camera);
+  }
+  
+  onFullscreenClick() {
+    console.log(this.vrEffect);
+    this.vrEffect.setFullScreen(true);
   }
   
   render() {
-    let cameraProps = {
-      fov: 75,
-      aspect: 1,
-      near: 1,
-      far: 5000,
-      position: new THREE.Vector3(0, 0, 200),
-      lookat: new THREE.Vector3(0, 0, 0)
-    };
     
     return (
       <div>
@@ -51,9 +63,9 @@ class Home extends Component {
           height={400}
           width={400}
           camera="main"
-          VRControls={THREE.VRControls}
+          VRControls={this.vrControls}
           VRControlsTarget="car">
-          <PerspectiveCamera name="main" {...cameraProps}/>
+          <PerspectiveCamera name="main" {...this.state.perspective}/>
           <DirectionalLight position={new THREE.Vector3(10, 10, 10)} />
           <AmbientLight color={0x050505}/>
           <Car name="car" model="veyron"/>
