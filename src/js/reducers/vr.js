@@ -33,7 +33,7 @@ function getInputs(devices) {
 function getInputStates(inputs) {
   let inputStates = {};
   
-  if (inputes.length > 0) {
+  if (inputs.length > 0) {
     inputs.forEach(input => {
       let state = input.getState();
       
@@ -45,19 +45,6 @@ function getInputStates(inputs) {
         inputStates.position = state.position;
       }
     });
-  }
-  else {
-    inputStates.orientation = {
-      w: 1,
-      x: Math.random(),
-      y: Math.random(),
-      z: Math.random()
-    };
-    inputStates.position = {
-      x: Math.random(),
-      y: Math.ranom(),
-      z: Math.random()
-    };
   }
   
   return inputStates;
