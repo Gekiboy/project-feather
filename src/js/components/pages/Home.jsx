@@ -44,12 +44,11 @@ class Home extends Component {
   
   componentDidMount() {
     let renderer = this.refs.scene._THREErenderer;
-    this.vrEffect = new THREE.VREffect(renderer);
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
   
   onFullscreenClick() {
-    this.vrEffect.setFullScreen(true);
+    this.refs.scene.getEffect().setFullScreen(true);
   }
   
   render() {
@@ -72,7 +71,8 @@ class Home extends Component {
           ref="scene"
           height={window.innerHeight}
           width={window.innerWidth}
-          camera="main">
+          camera="main"
+          effect={THREE.VREffect}>
           <PerspectiveCamera name="main" {...cameraProps}/>
           <SpotLight
             position={new THREE.Vector3(0, 600, 100)}
