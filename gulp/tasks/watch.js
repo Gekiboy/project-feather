@@ -6,6 +6,7 @@ gulp.task('watch', function() {
 	gulp.watch('./src/images/**', ['images']);
 	gulp.watch('./src/fonts/**', ['fonts']);
 	gulp.watch('./src/objects/**', ['objects']);  
+	gulp.watch('./src/audio/**', ['audio']);
 	gulp.watch('./src/scss/**', ['styles']);
 	gulp.watch('./src/textures/**', ['textures']);  
 	gulp.watch('./src/index.html', ['html']);
