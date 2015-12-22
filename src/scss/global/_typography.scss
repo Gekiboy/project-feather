@@ -50,16 +50,18 @@
     font-style: normal;
 }
 
-// Custom weight mappings (stacks declared in custom settings under config)
-h1, h2 {
+// Headings
+h1, h2, h3 {
     font-family: $font-stack-light;
+
+    em {
+        font-style: normal;
+        font-family: $font-stack-semibold;
+    }
 }
 
-h3, h4 {
+h4, h5, h6 {
     font-family: $font-stack-semilight;
-    span {
-        font-family: $font-stack-default;
-    }
 }
 
 em, i {

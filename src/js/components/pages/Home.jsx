@@ -72,8 +72,9 @@ class Home extends Component {
           <AmbientLight color={0x050505}/>
           <Car name="car" model="veyron"/>
         </Scene>
-        <br />
-        <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen fa fa-arrows-alt"></button>
+        <div>
+          <button onClick={this.onFullscreenClick.bind(this)} className="fullscreen"><i className="fa fa-arrows-alt"></i> Launch VR</button>
+        </div>
       </div>
     );
   }
